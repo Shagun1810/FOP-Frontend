@@ -1,0 +1,83 @@
+header {
+  background-color: #fff;
+  height: 10vh;
+  box-shadow: 0 5px 30px rgb(0 22 84 / 10%);
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 99999;
+}
+header img {
+  width: 150px;
+}
+header a {
+  margin-left: 20px;
+  transition: 0.5s;
+  font-weight: 500;
+}
+header metamaskButton {
+  border: solid 2px #444;
+  font-size:20px;
+  padding: 20px 40px 20px 70px;
+  background: #dd6e2e;
+  background-image: url("/src/components/images/mm.png");
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-position: 20px;
+  font-weight: bold;
+  color: #fff;
+  box-shadow: inset 2px 2px 0 #fff, 0 8px 10px -4px rgba(0,0,0,0.4);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+header a:hover {
+  color: white;
+}
+header span {
+  width: auto;
+  padding: 0px 6px;
+  background: #27ae60;
+  border-radius: 50px;
+  color: #ffffff;
+  margin-right: 10px;
+  font-weight: 400;
+}
+header h4 {
+  font-weight: 500;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+header .toggle {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  header {
+    padding: 0;
+  }
+  header img {
+    margin-top: 30px;
+  }
+  header .button {
+    display: none;
+  }
+  header .nav .flex {
+    display: none;
+  }
+  header .toggle {
+    display: block;
+    margin-top: 20px;
+  }
+  header .small {
+    position: absolute;
+    top: 10vh;
+    left: 0;
+    width: 100%;
+    background-color: #27ae60;
+    padding: 20px;
+  }
+  header li a {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+}
