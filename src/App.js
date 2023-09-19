@@ -17,6 +17,7 @@ import Header from './components/common/header/Header';
 import Test from './components/test';
 import ViewPropertyDetails from './components/RealInvestor/ViewPropertyDetails';
 import RealInvestor from './components/RealInvestor/RealInvestor';
+import UploadImage from './components/Investor/PropertyListingForm/UploadImage';
 
 // import{
 //   createBrowserRouter,
@@ -58,6 +59,7 @@ function App() {
           <Route  path='/lister' element={<Investor/>} />
           <Route path='/realInvestor' element={<RealInvestor/>} />
           <Route  path='/test' element={<Test/>} />
+          <Route path='/uploadimage/:tokenID' element={<UploadImage/>} />
           <Route path='/properties/:tokenID' element={<ViewPropertyDetails/>} />
         </Routes>
         <Footer />
