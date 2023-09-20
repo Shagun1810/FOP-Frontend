@@ -27,9 +27,10 @@ const PropertyListingForm = () => {
       console.log(data)
       setFormData({
           ...formData,
-          tokenID:data
+          tokenID:data+1
         });
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   
 
@@ -43,6 +44,7 @@ const PropertyListingForm = () => {
       description: "",
       tokenID: '',
     });
+    const [buttonText, setButtonText] = useState('List Property')
     
     const [documents, setDocuments] = useState(null);
   
@@ -71,13 +73,30 @@ const PropertyListingForm = () => {
     const data = await response.data
     return data
     }
+
+    let mintToken = async() => {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      let contract = new ethers.Contract(
+        YOUR_CONTRACT_ADDRESS,
+        contractABI,
+        signer
+      );
+      const token=await contract.mintNewToken(formData.propertyName, [],[]);
+      return token
+    };
   
     const handleSubmit = (e) => {
+      setButtonText('Adding Property to blockchain')
       e.preventDefault();
       sendRequestToBackend().then(data=>{
         console.log(data)
         if(data.success){
-          navigate(`/uploadimage/${formData.tokenID}`)
+
+          mintToken().then(newData => {
+            console.log(newData)
+            navigate(`/uploadimage/${formData.tokenID}`)
+          }).catch(err => console.log(err))
         }
       })
     };
@@ -155,7 +174,7 @@ const PropertyListingForm = () => {
               type="text"
               id="tokenID"
               name="tokenID"
-              value={formData.tokenID+1}
+              value={formData.tokenID}
               onChange={handleChange}
               disabled={true}
             />
@@ -170,7 +189,7 @@ const PropertyListingForm = () => {
               onChange={handleChange}
             />
           </div>
-          <button onClick={handleSubmit}>List Property</button>
+          <button className="my-4" onClick={handleSubmit}>{buttonText}</button>
         </form>
       </div>
     );

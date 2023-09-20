@@ -74,7 +74,7 @@ const UploadImage = () => {
               return <img src={url} />;
             })}
           </div>
-          <button onClick={handleSubmit}>Submit</button>
+          <button className='my-4' onClick={handleSubmit}>Submit</button>
     </div>
   )
 }

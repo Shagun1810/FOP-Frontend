@@ -49,7 +49,7 @@ function ViewPropertyDetails() {
                 <div className='relative mx-auto'>
                     <img
                         src={propertyDetails.imageSource[`${number%(propertyDetails.imageSource.length)}`]}
-                        alt="image"
+                        alt="property"
                         // className="w-full h-auto max-h-screen"
                     />
                      <button

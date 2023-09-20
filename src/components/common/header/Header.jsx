@@ -25,9 +25,11 @@ const Header = () => {
           method: "eth_requestAccounts",
         });
         setWalletAddress(accounts[0]);
+        setButtonText(walletAddress);
+
         console.log({walletAddress});
         const handleClick = ()=>{
-          setButtonText={walletAddress};
+          setButtonText(walletAddress);
         }
       } catch (error) {
         console.log('Error connecting...');

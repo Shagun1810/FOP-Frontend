@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import {useNavigate} from "react-router-dom";
-import { list } from "../../data/Data"
 import axios from "axios";
+import noImage from '../../../assets/No-Image-Placeholder.png'
 
 
 
 const RecentCard = () => {
-  const [ispropertydetailsavailable, setIspropertydetailsavailable] = useState(false)
+  // const [ispropertydetailsavailable, setIspropertydetailsavailable] = useState(false)
   const [propertyDetails, setpropertyDetails] = useState([])
   const navigate=useNavigate()
   useEffect(() => {
     sendRequestToBackend().then(data=>{
       console.log(data.propertyDetails)
       if (data.success){
-        setIspropertydetailsavailable(true)
+        // setIspropertydetailsavailable(true)
         setpropertyDetails(data.propertyDetails)
       }
     })
@@ -43,28 +43,26 @@ const RecentCard = () => {
       <div className='content grid3 mtop'>
         {propertyDetails.map((val, index) => {
           return (
-            <div className='box shadow' key={index}>
+            <div className='box shadow flex flex-col ' key={index}>
               <div className='img'>
-                <img src={val.imageSource[0]} alt='' />
+                {val.imageSource[0].startsWith('http') ? 
+                <img src={val.imageSource[0]} alt='' /> : 
+                <img src={noImage} alt='' /> }
               </div>
-              <div className='text'>
-                {/* <div className='category flex'>
-                  <span style={{ background: category === "For Sale" ? "#25b5791a" : "#ff98001a", color: category === "For Sale" ? "#25b579" : "#ff9800" }}>{category}</span>
-                  <i className='fa fa-heart'></i>
-                </div> */}
+              <div className='flex justify-start gap-x-4'>
                 <h4>{val.propertyName}</h4>
-                <p>
+                <h4>
                   <i className='fa fa-location-dot'></i> {val.address}
-                </p>
+                </h4>
               </div>
-              <div className='button flex'>
-                <div>
-                  <button className='btn2'>{val.price} Rs</button>
+              <div className='flex justify-evenly gap-x-4'>
+                <div className="w-fit ">
+                  {val.price} Rs
                 </div>
-                <span>{val.propertyType}</span>
+                <div>{val.propertyType}</div>
               </div>
-              <div>
-                <button onClick={()=>getPropertyDetails(val.tokenID)}>View Details</button>
+              <div className="w-full my-2">
+                <button className="w-full" onClick={()=>getPropertyDetails(val.tokenID)}>View Details</button>
               </div>
             </div>
           )
