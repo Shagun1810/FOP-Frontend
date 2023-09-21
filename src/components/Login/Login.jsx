@@ -45,6 +45,13 @@ function Login() {
     e.preventDefault()
     loginUser().then(data=>{
       console.log(data)
+      if(data.success){
+        if(data.credentials.category==='LISTER'){
+          navigate('/lister')
+        }else if(data.credentials.category==='INVESTOR'){
+          navigate('/realInvestor')
+        }
+      }
     })
   }
 //   const contractAddress = "0x97a6ce7B74A28288c5ef442C3C2dcA73Ae054Ee6";
