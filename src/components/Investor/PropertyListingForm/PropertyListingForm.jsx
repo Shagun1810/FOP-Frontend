@@ -27,7 +27,7 @@ const PropertyListingForm = () => {
       console.log(data)
       setFormData({
           ...formData,
-          tokenID:data+1
+          tokenID:data
         });
     })
   // eslint-disable-next-line react-hooks/exhaustive-deps
