@@ -11,7 +11,8 @@ import {
 import { storage } from "../../firebase";
 import { v4 } from "uuid";
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 
 const UploadImage = () => {
   const [documents, setDocuments] = useState(null);
@@ -20,6 +21,7 @@ const UploadImage = () => {
   const [formData, setformData] = useState('')
   const navigate=useNavigate()
   const imagesListRef = ref(storage, "images/");
+  const location = useLocation();
   
 
     const uploadFile = () => {
@@ -34,24 +36,25 @@ const UploadImage = () => {
         });
       };
 
-      // console.log(imageUrls)
+      console.log(imageUrls)
       // console.log(imageUrls[0])
 
-      useEffect(() => {
-        listAll(imagesListRef).then((response) => {
-          response.items.forEach((item) => {
-            getDownloadURL(item).then((url) => {
-              setImageUrls((prev) => [...prev, url]);
+      // useEffect(() => {
+      //   listAll(imagesListRef).then((response) => {
+      //     response.items.forEach((item) => {
+      //       getDownloadURL(item).then((url) => {
+      //         setImageUrls((prev) => [...prev, url]);
               
-            });
-          });
-        });
-      }, []);
+      //       });
+      //     });
+      //   });
+      // }, []);
 
-      const sendRequestToBackend=async()=>{
-        const url='http://localhost:5000/api/properties/addproperty'
-        const response = await axios.post(url, {
-          ...formData
+      const sendRequestToBackend=async(id)=>{
+        const url='http://localhost:5000/api/properties/updateProperty'
+        const response = await axios.patch(url, {
+          id:id,
+          images:imageUrls
       }).catch((err) => {
         return {
           data: {
@@ -70,6 +73,12 @@ const UploadImage = () => {
         setImageUpload(file);
       };
 
+      const addImageLinkToBackend=()=>{
+        const id=location.state.id
+        console.log(id)
+        sendRequestToBackend(id).then(data=>{console.log(data)}).catch(err=>{console.log(err)})
+      }
+
 
   return (
     <div>
@@ -86,7 +95,7 @@ const UploadImage = () => {
             {/* {imageUrls.map((url) => {
               return <img src={url} />;
             })} */}
-            {/* <button onClick={}>Done</button> */}
+            <button onClick={addImageLinkToBackend}>Done</button>
           </div>
     </div>
   )

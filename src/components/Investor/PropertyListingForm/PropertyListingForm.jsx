@@ -95,7 +95,7 @@ const PropertyListingForm = () => {
 
           mintToken().then(newData => {
             console.log(newData)
-            navigate(`/uploadimage/${formData.tokenID}`)
+            navigate(`/uploadimage/${formData.tokenID}`,{state:{id:data.credentials._id}})
           }).catch(err => console.log(err))
         }
       })
