@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import {
     ref,
+    getStorage,
     uploadBytes,
+    deleteObject,
     getDownloadURL,
     listAll,
     list
@@ -18,6 +20,7 @@ const UploadImage = () => {
   const [formData, setformData] = useState('')
   const navigate=useNavigate()
   const imagesListRef = ref(storage, "images/");
+  
 
     const uploadFile = () => {
       console.log("hi")
@@ -26,17 +29,20 @@ const UploadImage = () => {
         uploadBytes(imageRef, imageUpload).then((snapshot) => {
           getDownloadURL(snapshot.ref).then((url) => {
             setImageUrls((prev) => [...prev, url]);
-            console.log(url)
             alert("Image uploaded successfully")
           });
         });
       };
+
+      // console.log(imageUrls)
+      // console.log(imageUrls[0])
 
       useEffect(() => {
         listAll(imagesListRef).then((response) => {
           response.items.forEach((item) => {
             getDownloadURL(item).then((url) => {
               setImageUrls((prev) => [...prev, url]);
+              
             });
           });
         });
@@ -64,6 +70,7 @@ const UploadImage = () => {
         setImageUpload(file);
       };
 
+
   return (
     <div>
         <div>
@@ -79,6 +86,7 @@ const UploadImage = () => {
             {/* {imageUrls.map((url) => {
               return <img src={url} />;
             })} */}
+            {/* <button onClick={}>Done</button> */}
           </div>
     </div>
   )
