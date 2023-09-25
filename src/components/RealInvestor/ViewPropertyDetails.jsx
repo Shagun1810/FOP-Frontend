@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import {
   FaHome,
@@ -23,6 +23,7 @@ function ViewPropertyDetails() {
     pd: ''      // its an array
   })
   const [number, setnumber] = useState(0)
+  const navigate=useNavigate()
 
   let getSingleToken = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -62,6 +63,7 @@ function ViewPropertyDetails() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+
   const sendRequestToBackend = async () => {
     const url = `http://localhost:5000/api/properties/getProperty/${params.tokenID}`
     const res = await axios.get(url).catch((err) => {
@@ -75,6 +77,10 @@ function ViewPropertyDetails() {
     })
     const data = await res.data
     return data
+  }
+
+  const bookProperty=()=>{
+    navigate(`/bookProperty/${propertyDetails.tokenID}`,{state: {tokenID:propertyDetails.tokenID,owner:propertyDetails.owner}})
   }
 
   // // Helper function to calculate the width of the green bar
@@ -182,7 +188,7 @@ function ViewPropertyDetails() {
             </div>
           </div>
           <div className="my-4 ">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={bookProperty}>
               BOOK PROPERTY!
             </button>
           </div>

@@ -83,6 +83,7 @@ const UploadImage = () => {
   return (
     <div>
         <div>
+          <h1>Step-2</h1>
             <label htmlFor="documents">Documents (Images, etc.):</label>
             <input
               type="file"

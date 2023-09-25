@@ -41,7 +41,9 @@ const PropertyListingForm = () => {
       price: "",
       area: "",
       address: "",
+      owner: "",
       description: "",
+      metamaskAddress: "",
       tokenID: '',
     });
     const [buttonText, setButtonText] = useState('List Property')
@@ -105,6 +107,7 @@ const PropertyListingForm = () => {
 
     return (
       <div>
+        <h1>Step-1</h1>
         <h1>List a New Property for Sale</h1>
         <form onSubmit={handleSubmit}>
         <div>
@@ -164,6 +167,26 @@ const PropertyListingForm = () => {
               id="address"
               name="address"
               value={formData.address}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="owner">UserName:</label>
+            <input
+              type="text"
+              id="owner"
+              name="owner"
+              value={formData.owner}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="metamaskAddress">Metamask Account Address</label>
+            <input
+              type="text"
+              id="metamaskAddress"
+              name="metamaskAddress"
+              value={formData.metamaskAddress}
               onChange={handleChange}
             />
           </div>
