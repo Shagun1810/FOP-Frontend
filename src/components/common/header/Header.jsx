@@ -48,6 +48,20 @@ const Header = () => {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
     }
   }
+  
+  const listings=()=>{
+    if(localStorage.getItem("category")==="LISTER"){
+      return "My Listings"
+    }else if(localStorage.getItem("category")==="INVESTOR"){
+      return "My Investments"
+    }else{
+      return
+    }
+  }
+
+  const getListing=()=>{
+    console.log("hi")
+  }
 
   return (
     <>
@@ -64,6 +78,10 @@ const Header = () => {
                 </li>
               ))}
             </ul>
+          </div>
+          <div onClick={getListing} className="cursor-pointer px-2 py-2 rounded-md"> 
+            {/* {<h2>{localStorage.getItem("category")==="LISTER"?"My Listings":"My Investments"}</h2>} */}
+            <h2>{listings()}</h2>
           </div>
           <div className='button flex gap-x-4'>
           <button onClick={requestAccount} className="px-2 py-1 text-sm">{buttonText}</button>

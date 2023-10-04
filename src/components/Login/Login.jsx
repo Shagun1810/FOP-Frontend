@@ -47,8 +47,12 @@ function Login() {
       console.log(data)
       if(data.success){
         if(data.credentials.category==='LISTER'){
+          localStorage.setItem("category", "LISTER");
+          localStorage.setItem("username", data.credentials.username);
           navigate('/lister')
         }else if(data.credentials.category==='INVESTOR'){
+          localStorage.setItem("category", "INVESTOR");
+          localStorage.setItem("username", data.credentials.username);
           navigate('/realInvestor')
         }
       }
