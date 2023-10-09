@@ -80,7 +80,7 @@ function ViewPropertyDetails() {
   }
 
   const bookProperty=()=>{
-    navigate(`/bookProperty/${propertyDetails.tokenID}`,{state: {tokenID:propertyDetails.tokenID,owner:propertyDetails.owner}})
+    navigate(`/bookProperty/${propertyDetails.tokenID}`,{state: {tokenID:propertyDetails.tokenID,owner:propertyDetails.owner, ownerMetamask: propertyDetails.metamaskAddress}})
   }
 
   // // Helper function to calculate the width of the green bar
