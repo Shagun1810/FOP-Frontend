@@ -97,17 +97,20 @@ const BookProperty = () => {
   }
 
   return (
-    <div>
-      <h1>Property Investment Form</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="username">Username:</label>
+    <div className="container mx-auto mt-10">
+      <h1 className="text-3xl text-center mt-4 font-semibold mb-6">Property Investment Form</h1>
+      <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+        <div className="mb-4">
+          <label htmlFor="username" className="block text-sm font-medium text-gray-600">
+            Username:
+          </label>
           <input
             type="text"
             name="username"
             id="username"
             value={formData.username}
             onChange={handleInputChange}
+            className="mt-1 p-2 w-full border rounded-md"
             required
           />
         </div>
@@ -138,7 +141,7 @@ const BookProperty = () => {
           </div>
         )}
 
-        <div className="form-group">
+        <div className="form-group my-4">
           <label htmlFor="amount">Amount to be invested (In %):</label>
           <input
             type="text"
@@ -150,8 +153,22 @@ const BookProperty = () => {
           />
         </div>
 
-        <button onClick={handleSubmit}>{buttonDetails}</button>
-        {isDone && <button onClick={navigateToHome}>Done</button>}
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline my-4"
+        >
+          {buttonDetails}
+        </button>
+
+        {isDone && (
+          <button
+            onClick={navigateToHome}
+            className="mt-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Done
+          </button>
+        )}
       </form>
     </div>
   )

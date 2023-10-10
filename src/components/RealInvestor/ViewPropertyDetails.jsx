@@ -15,6 +15,7 @@ import contractABI from '../../erc1155ABI.json'
 import { MdGeneratingTokens } from 'react-icons/md'
 const YOUR_CONTRACT_ADDRESS = '0x97a6ce7B74A28288c5ef442C3C2dcA73Ae054Ee6'
 
+
 function ViewPropertyDetails() {
   const params = useParams()
   const [propertyDetails, setpropertyDetails] = useState('')
@@ -91,9 +92,9 @@ function ViewPropertyDetails() {
   const barWidth = '300px'
 
   return (
-    <div className="flex justify-center w-[90vw] ">
+    <div className="flex justify-center items-center w-[100vw]">
       {propertyDetails && (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center w-[100vw]">
           <div className="relative mx-auto">
             <img
               src={
@@ -102,7 +103,7 @@ function ViewPropertyDetails() {
                 ]
               }
               alt="property"
-              className="w-full h-auto max-h-screen"
+              className="w-full h-auto max-h-screen my-4 object-cover h-48 w-96"
             />
             <button
               onClick={changeNumber}
