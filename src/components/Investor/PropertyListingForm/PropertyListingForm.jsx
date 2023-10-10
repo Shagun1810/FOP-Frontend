@@ -106,117 +106,118 @@ const PropertyListingForm = () => {
     
 
     return (
-      <div>
-        <h1>Step-1</h1>
-        <h1>List a New Property for Sale</h1>
-        <form onSubmit={handleSubmit}>
-        <div>
-            <label htmlFor="propertyName">Property Name:</label>
+      <div className="container mx-auto mt-10 p-4 border rounded-lg shadow-lg">
+        <h1 className="text-3xl font-bold mb-6 text-center">List a New Property for Sale</h1>
+        <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-4">
+          <div className="flex flex-col">
+            <label htmlFor="propertyName" className="text-sm font-semibold text-gray-600 mb-1">Property Name:</label>
             <input
               type="text"
               id="propertyName"
               name="propertyName"
               value={formData.propertyName}
               onChange={handleChange}
+              className="px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
             />
           </div>
-          <div>
-            <label htmlFor="propertyType">Property Type:</label>
+  
+          <div className="flex flex-col">
+            <label htmlFor="propertyType" className="text-sm font-semibold text-gray-600 mb-1">Property Type:</label>
             <input
               type="text"
               id="propertyType"
               name="propertyType"
               value={formData.propertyType}
               onChange={handleChange}
+              className="px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
             />
           </div>
-          <div>
-            <label htmlFor="price">Price:</label>
+  
+          <div className="flex flex-col">
+            <label htmlFor="price" className="text-sm font-semibold text-gray-600 mb-1">Price:</label>
             <input
               type="number"
               id="price"
               name="price"
               value={formData.price}
               onChange={handleChange}
+              className="px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
             />
           </div>
-          <div>
-            <label htmlFor="area">Area(in sqft.):</label>
+  
+          <div className="flex flex-col">
+            <label htmlFor="area" className="text-sm font-semibold text-gray-600 mb-1">Area (in sqft.):</label>
             <input
               type="number"
               id="area"
               name="area"
               value={formData.area}
               onChange={handleChange}
+              className="px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
             />
           </div>
-          {/* <div>
-            <label htmlFor="fractionalOwners">No of Fractional Owners:</label>
-            <input
-              type="number"
-              id="fractionalOwners"
-              name="fractionalOwners"
-              value={this.state.fractionalOwners}
-              onChange={this.handleChange}
-            />
-            <div className="error">{this.state.errors.fractionalOwners}</div>
-          </div> */}
-          <div>
-            <label htmlFor="address">Address:</label>
+  
+          <div className="flex flex-col">
+            <label htmlFor="address" className="text-sm font-semibold text-gray-600 mb-1">Address:</label>
             <input
               id="address"
               name="address"
               value={formData.address}
               onChange={handleChange}
+              className="px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
             />
           </div>
-          <div>
-            <label htmlFor="owner">UserName:</label>
+  
+          <div className="flex flex-col">
+            <label htmlFor="owner" className="text-sm font-semibold text-gray-600 mb-1">Owner/Username:</label>
             <input
               type="text"
               id="owner"
               name="owner"
               value={formData.owner}
               onChange={handleChange}
+              className="px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
             />
           </div>
-          <div>
-            <label htmlFor="metamaskAddress">Metamask Account Address</label>
+  
+          <div className="flex flex-col">
+            <label htmlFor="metamaskAddress" className="text-sm font-semibold text-gray-600 mb-1">Metamask Account Address:</label>
             <input
               type="text"
               id="metamaskAddress"
               name="metamaskAddress"
               value={formData.metamaskAddress}
               onChange={handleChange}
+              className="px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
             />
           </div>
-          <div>
-            <label htmlFor="tokenID">TokenID:</label>
-            {formData.tokenID && 
+  
+          {/* TokenID field */}
+          {formData.tokenID && (
+            <div className="flex flex-col">
+              <label htmlFor="tokenID" className="text-sm font-semibold text-gray-600 mb-1">TokenID:</label>
               <input
-              type="text"
-              id="tokenID"
-              name="tokenID"
-              value={formData.tokenID}
-              onChange={handleChange}
-              disabled={true}
-            />
-            }
-          </div>
-          <div>
-            <label htmlFor="description">Description:</label>
-            <input
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-            />
-          </div>
-          <button className="my-4" onClick={handleSubmit}>{buttonText}</button>
+                type="text"
+                id="tokenID"
+                name="tokenID"
+                value={formData.tokenID}
+                onChange={handleChange}
+                className="px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
+                disabled
+              />
+            </div>
+          )}
+  
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300"
+          >
+            {buttonText}
+          </button>
         </form>
       </div>
     );
-  }
+  };
 
 
 export default PropertyListingForm;

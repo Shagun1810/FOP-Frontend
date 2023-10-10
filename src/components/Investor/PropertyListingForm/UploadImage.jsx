@@ -80,26 +80,46 @@ const UploadImage = () => {
       }
 
 
-  return (
-    <div>
-        <div>
-          <h1>Step-2</h1>
-            <label htmlFor="documents">Documents (Images, etc.):</label>
+      return (
+        <div className="container mx-auto mt-10 p-4 border rounded-lg shadow-lg">
+          <h1 className="text-3xl font-bold mb-6">Step 2: Upload Images</h1>
+          <div className="mb-4">
+            <label htmlFor="documents" className="text-sm font-semibold text-gray-600 mb-1">
+              Documents (Images, etc.):
+            </label>
             <input
               type="file"
               id="documents"
               name="documents"
               accept=".jpg,.jpeg,.png"
               onChange={handleFileChange}
+              className="border rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-500"
             />
-            <button onClick={uploadFile}> Upload Image</button>
-            {/* {imageUrls.map((url) => {
-              return <img src={url} />;
-            })} */}
-            <button onClick={addImageLinkToBackend}>Done</button>
           </div>
-    </div>
-  )
-}
+          <div className="mb-4">
+            <button
+              onClick={uploadFile}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300"
+            >
+              Upload Image
+            </button>
+          </div>
+          <div>
+            {imageUrls.length > 0 &&
+              imageUrls.map((url, index) => (
+                <img key={index} src={url} alt={`Image ${index}`} className="mb-2" />
+              ))}
+          </div>
+          <div className="mt-4">
+            <button
+              onClick={addImageLinkToBackend}
+              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-green-300"
+            >
+              Done
+            </button>
+          </div>
+        </div>
+      );
+    };
 
 export default UploadImage
