@@ -2,9 +2,10 @@ import React, { useState } from "react"
 import { ethers } from 'ethers';
 import "./header.css"
 import { nav } from "../../data/Data"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { computeHeadingLevel } from "@testing-library/react";
 import logo from '../../images/logosvp.png'
+
 
 
 
@@ -14,6 +15,8 @@ const Header = () => {
 
   const [walletAddress, setWalletAddress] = useState("");
   const[buttonText,setButtonText]=useState("Connect Metamask");
+
+  const navigate = useNavigate()
 
   async function requestAccount() {
     console.log('Requesting account...');
@@ -50,18 +53,18 @@ const Header = () => {
     }
   }
   
-  const listings=()=>{
-    if(localStorage.getItem("category")==="LISTER"){
-      return "My Listings"
-    }else if(localStorage.getItem("category")==="INVESTOR"){
-      return "My Investments"
-    }else{
-      return
-    }
-  }
+  // const listings=()=>{
+  //   if(localStorage.getItem("category")==="LISTER"){
+  //     return "My Listings"
+  //   }else if(localStorage.getItem("category")==="INVESTOR"){
+  //     return "My Investments"
+  //   }else{
+  //     return
+  //   }
+  // }
 
-  const getListing=()=>{
-    console.log("hi")
+  const getProfile=()=>{
+    navigate('/myprofile')
   }
 
   return (
@@ -80,9 +83,9 @@ const Header = () => {
               ))}
             </ul>
           </div>
-          <div onClick={getListing} className="cursor-pointer px-2 py-2 rounded-md"> 
+          <div onClick={getProfile} className="cursor-pointer px-2 py-2 rounded-md"> 
             {/* {<h2>{localStorage.getItem("category")==="LISTER"?"My Listings":"My Investments"}</h2>} */}
-            <h2>{listings()}</h2>
+            <h2>My Profile</h2>
           </div>
           <div className='button flex gap-x-4'>
           <button onClick={requestAccount} className="px-2 py-1 text-sm">{buttonText}</button>

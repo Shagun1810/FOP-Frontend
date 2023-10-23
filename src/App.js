@@ -19,6 +19,7 @@ import ViewPropertyDetails from './components/RealInvestor/ViewPropertyDetails';
 import RealInvestor from './components/RealInvestor/RealInvestor';
 import UploadImage from './components/Investor/PropertyListingForm/UploadImage';
 import BookProperty from './components/RealInvestor/BookProperty';
+import MyProfile from './components/profile/MyProfile';
 
 // import{
 //   createBrowserRouter,
@@ -63,6 +64,7 @@ function App() {
           <Route path='/uploadimage/:tokenID' element={<UploadImage/>} />
           <Route path='/properties/:tokenID' element={<ViewPropertyDetails/>} />
           <Route path='/bookProperty/:tokenID' element={<BookProperty/>} />
+          <Route path='/myprofile' element={<MyProfile/>} />
         </Routes>
         <Footer />
       </Router>
