@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 const YOUR_CONTRACT_ADDRESS = "0x97a6ce7B74A28288c5ef442C3C2dcA73Ae054Ee6";
 
+// ADD DESCRIPTION FIELD
+
 const PropertyListingForm = () => {
 
   let getContract = async() => {
@@ -42,7 +44,7 @@ const PropertyListingForm = () => {
       area: "",
       address: "",
       owner: "",
-      description: "",
+      description: "",  
       metamaskAddress: "",
       tokenID: '',
     });
@@ -58,6 +60,26 @@ const PropertyListingForm = () => {
         [name]: value,
       });
     };
+
+    const addListingToBackend = async () => {
+      const url = 'http://localhost:5000/api/properties/updateListings'
+      const response = await axios.patch(url, {
+        username: localStorage.getItem("username"),
+        listing: {
+          tokenID: formData.tokenID
+        }
+      }).catch((err) => {
+        return {
+          data: {
+            message: err.response.data.message,
+            success: err.response.data.success,
+            status: err.response.status,
+          },
+        }
+      })
+      const data = await response.data
+      return data
+    }
 
     const sendRequestToBackend=async()=>{
       const url='http://localhost:5000/api/properties/addproperty'
@@ -94,8 +116,10 @@ const PropertyListingForm = () => {
       sendRequestToBackend().then(data=>{
         console.log(data)
         if(data.success){
-
           mintToken().then(newData => {
+            // add listing to backend
+            addListingToBackend().then(data2 => console.log(data2))
+
             console.log(newData)
             navigate(`/uploadimage/${formData.tokenID}`,{state:{id:data.credentials._id}})
           }).catch(err => console.log(err))

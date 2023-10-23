@@ -18,8 +18,10 @@ function Register() {
     const [contact, setContact] = useState('') 
     const [username, setUsername] =useState('')
     const [password, setPassword] =useState('')
-    const [category, setCategory] = useState('')
+    const [category, setCategory] = useState('LISTER')
     const navigate=useNavigate()
+
+    console.log(category)
 
     const createUser = async ()=>{
       const response = await axios.post('http://localhost:5000/api/users/signup', {
@@ -46,6 +48,8 @@ function Register() {
       e.preventDefault()
       createUser().then(data=>{
         console.log(data)
+        localStorage.setItem("username", username)
+        localStorage.setItem("category", category)
         if(data.success){
           if(data.credentials.category==='LISTER'){
             navigate('/lister')

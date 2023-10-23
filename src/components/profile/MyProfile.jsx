@@ -8,7 +8,7 @@ const MyProfile = () => {
   useEffect(() => {
     sendRequestToBackend().then((data) => {
       console.log(data)
-      setCategory(localStorage.getItem("category"))
+      setCategory(localStorage.getItem('category'))
       if (data.success) {
         setProfileData(data.userData)
       }
@@ -18,7 +18,7 @@ const MyProfile = () => {
   const sendRequestToBackend = async () => {
     const url = 'http://localhost:5000/api/properties/getHoldings'
     const res = await axios
-      .post(url, { username: localStorage.getItem("username") })
+      .post(url, { username: localStorage.getItem('username') })
       .catch((err) => {
         return {
           data: {
@@ -32,7 +32,14 @@ const MyProfile = () => {
     return data
   }
 
-  return <div>MyProfile</div>
+  return (
+    <div>
+      {category === 'INVESTOR' && <h2>My Investments</h2>}
+      {category === 'LISTER' && <h2>My Listings</h2>}
+
+      {category === 'INVESTOR' && <div></div>}
+    </div>
+  )
 }
 
 export default MyProfile

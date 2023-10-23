@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ethers } from 'ethers'
 import contractABI from '../../erc1155ABI.json'
+import axios from 'axios'
 
 const YOUR_CONTRACT_ADDRESS = '0x97a6ce7B74A28288c5ef442C3C2dcA73Ae054Ee6'
 
@@ -43,6 +44,27 @@ const BookProperty = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target
     setFormData({ ...formData, [name]: value })
+  }
+
+  const addInvestmentToBackend = async () => {
+    const url = 'http://localhost:5000/api/properties/updateHoldings'
+    const response = await axios.patch(url, {
+      username: localStorage.getItem("username"),
+      holding: {
+        tokenID: formData.tokenID,
+        amountInvested: formData.amount
+      }
+    }).catch((err) => {
+      return {
+        data: {
+          message: err.response.data.message,
+          success: err.response.data.success,
+          status: err.response.status,
+        },
+      }
+    })
+    const data = await response.data
+    return data
   }
 
   let BookPropertyFunction = async () => {
@@ -88,6 +110,11 @@ const BookProperty = () => {
           tokenID: '',
           amount: '',
         })
+        // add token data to backend
+        addInvestmentToBackend().then(data => {
+          console.log(data)
+        })
+
       })
       .catch((error) => console.log(error))
   }
