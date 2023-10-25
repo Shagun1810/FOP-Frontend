@@ -231,6 +231,16 @@ const PropertyListingForm = () => {
               />
             </div>
           )}
+
+          <div>
+            <label htmlFor="description">Description:</label>
+            <input
+              id="description"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+            />
+          </div>
   
           <button
             type="submit"
