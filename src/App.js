@@ -7,7 +7,7 @@ import Home from './components/home/Home';
 import About from './components/about/About';
 import Services from './components/services/Services';
 import Blog from './components/blog/Blog';
-import Pricing from './components/pricing/Pricing';
+// import Pricing from './components/pricing/Pricing';
 import Contact from './components/contact/Contact';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
@@ -20,6 +20,7 @@ import RealInvestor from './components/RealInvestor/RealInvestor';
 import UploadImage from './components/Investor/PropertyListingForm/UploadImage';
 import BookProperty from './components/RealInvestor/BookProperty';
 import MyProfile from './components/profile/MyProfile';
+import ViewListings from './components/profile/ViewListings';
 
 // import{
 //   createBrowserRouter,
@@ -65,6 +66,7 @@ function App() {
           <Route path='/properties/:tokenID' element={<ViewPropertyDetails/>} />
           <Route path='/bookProperty/:tokenID' element={<BookProperty/>} />
           <Route path='/myprofile' element={<MyProfile/>} />
+          <Route path='/viewlistings/:tokenID' element={<ViewListings/>} />
         </Routes>
         <Footer />
       </Router>

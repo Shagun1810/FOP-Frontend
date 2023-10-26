@@ -1,9 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const MyProfile = () => {
   const [profileData, setProfileData] = useState('')
   const [category, setCategory] = useState('')
+  const navigate=useNavigate()
 
   useEffect(() => {
     sendRequestToBackend().then((data) => {
@@ -32,12 +34,28 @@ const MyProfile = () => {
     return data
   }
 
+  const viewTokenDetails=(tokenID)=>{
+    navigate(`/viewlistings/${tokenID}`)
+  }
+
   return (
     <div>
-      {category === 'INVESTOR' && <h2>My Investments</h2>}
-      {category === 'LISTER' && <h2>My Listings</h2>}
+      {category === 'INVESTOR' && <h2>Hi {profileData.username}</h2>}
+      {category === 'LISTER' && <h2>Hi {profileData.username}</h2>}
 
-      {category === 'INVESTOR' && <div></div>}
+      {category === 'LISTER' && <div>
+        <h2>Token ID</h2>
+
+        {
+          profileData.listings.map(tokens=>
+            <div>
+              
+              <h2>{tokens.tokenID}</h2>
+              <button onClick={() => viewTokenDetails(tokens.tokenID)}>View Details</button>
+            </div>
+          )
+        }
+        </div>}
     </div>
   )
 }
