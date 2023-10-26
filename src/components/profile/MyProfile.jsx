@@ -38,6 +38,10 @@ const MyProfile = () => {
     navigate(`/viewlistings/${tokenID}`)
   }
 
+  const viewInvestmentDetails=(tokenID)=>{
+    navigate(`/viewinvestments/${tokenID}`)
+  }
+
   return (
     <div>
       {category === 'INVESTOR' && <h2>Hi {profileData.username}</h2>}
@@ -52,6 +56,21 @@ const MyProfile = () => {
               
               <h2>{tokens.tokenID}</h2>
               <button onClick={() => viewTokenDetails(tokens.tokenID)}>View Details</button>
+            </div>
+          )
+        }
+        </div>}
+
+        {category === 'INVESTOR' && <div>
+        <h2>Token ID</h2>
+        <h2>Amount invested</h2>
+
+        {
+          profileData.holdings.map(tokens=>
+            <div>
+              <h2>{tokens.tokenID}</h2>
+              <h2>{tokens.amountInvested}</h2>
+              <button onClick={() => viewInvestmentDetails(tokens.tokenID)}>View Details</button>
             </div>
           )
         }
