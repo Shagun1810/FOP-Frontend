@@ -43,39 +43,38 @@ const MyProfile = () => {
   }
 
   return (
-    <div>
-      {category === 'INVESTOR' && <h2>Hi {profileData.username}</h2>}
-      {category === 'LISTER' && <h2>Hi {profileData.username}</h2>}
+    <div class="container mx-auto p-4">
+    {category === 'INVESTOR' && <h2 class="text-2xl mb-4 text-center">Hi {profileData.username}</h2>}
+    {category === 'LISTER' && <h2 class="text-2xl mb-4 text-center">Hi {profileData.username}</h2>}
 
-      {category === 'LISTER' && <div>
-        <h2>Token ID</h2>
+    {category === 'LISTER' && <div>
+        <h2 class="text-xl font-semibold mb-2">Token ID</h2>
 
-        {
-          profileData.listings.map(tokens=>
-            <div>
-              
-              <h2>{tokens.tokenID}</h2>
-              <button onClick={() => viewTokenDetails(tokens.tokenID)}>View Details</button>
+        {profileData.listings.map(tokens => (
+            <div class="flex items-center justify-between mb-2">
+                <h2 class="text-lg">{tokens.tokenID}</h2>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => viewTokenDetails(tokens.tokenID)}>View Details</button>
             </div>
-          )
-        }
-        </div>}
+        ))}
+    </div>}
 
-        {category === 'INVESTOR' && <div>
-        <h2>Token ID</h2>
-        <h2>Amount invested</h2>
+    {category === 'INVESTOR' && <div>
+        <div className='flex justify-evenly'>
+        <h2 class="text-xl font-semibold mb-2">Token ID</h2>
+        <h2 class="text-xl font-semibold mb-2">Amount invested</h2>
+        <h2 class="text-xl font-semibold mb-2"> </h2>
+        </div>
 
-        {
-          profileData.holdings.map(tokens=>
-            <div>
-              <h2>{tokens.tokenID}</h2>
-              <h2>{tokens.amountInvested}</h2>
-              <button onClick={() => viewInvestmentDetails(tokens.tokenID)}>View Details</button>
+        {profileData.holdings.map(tokens => (
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-lg">{tokens.tokenID}</span>
+                <span class="text-lg">{tokens.amountInvested}</span>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => viewInvestmentDetails(tokens.tokenID)}>View Details</button>
             </div>
-          )
-        }
-        </div>}
-    </div>
+        ))}
+    </div>}
+</div>
+
   )
 }
 
